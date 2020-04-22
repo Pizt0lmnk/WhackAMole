@@ -77,20 +77,24 @@ function Player:update(dt)
     if love.keyboard.isDown('a') and not self.shooting then
         self.projectile.direction = { -40, 0 }
         self.projectile.sprite = self.attackLeft
+        hitBox = {self.x - 40, self.x, self.y, self.y + textureHeight * SCALING_FACTOR}
         fireProjectile(self)
     end
     if love.keyboard.isDown('d') and not self.shooting then
         self.projectile.direction = { 40, 0 }
         self.projectile.sprite = self.attackRight
+        hitBox = {self.x + textureWidth * SCALING_FACTOR, self.x + textureWidth * SCALING_FACTOR + 40, self.y, self.y + textureHeight * SCALING_FACTOR}
         fireProjectile(self)
     end
     if love.keyboard.isDown('w') and not self.shooting then
         self.projectile.direction = { 0, -40 }
         self.projectile.sprite = self.attackUp
+        hitBox = {self.x, self.x + textureWidth * SCALING_FACTOR, self.y - 40, self.y}
         fireProjectile(self)
     end
     if love.keyboard.isDown('s') and not self.shooting then
         self.projectile.direction = { 0, 40 }
+        hitBox = {self.x, self.x + textureWidth * SCALING_FACTOR, self.y + textureHeight * SCALING_FACTOR, self.y + textureHeight * SCALING_FACTOR + 40}
         self.projectile.sprite = self.attackDown
         fireProjectile(self)
     end
